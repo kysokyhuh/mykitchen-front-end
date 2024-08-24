@@ -7,6 +7,8 @@ import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from '../src/services/authService'; // import the authservice
 import * as recipeService from '../src/services/recipeService'; // import the recipe
 import RecipeList from './components/RecipeList/RecipeList';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+
 
 export const AuthedUserContext = createContext(null);
 
@@ -32,18 +34,20 @@ const App = () => {
   }, [user])
 
 
-  
-
   return (
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
         <Routes>
+          {/* if user is logged in */}
           {user ? (
+            <>
+              <Route path="/" element={<RecipeList user={user} recipes={recipes} />} />
+              <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+            </>
 
-            <Route path="/" element={<RecipeList user={user} />} />
 
-          ) : (
+          ) : ( 
             <Route path="/" element={<Landing />} />
           )}
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />

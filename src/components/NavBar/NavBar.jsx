@@ -24,21 +24,14 @@ const NavBar = ({ handleSignout }) => {
   return (
     <>
       {user ? (
-        <nav>
-          <ul>
-            <li>Welcome, {user.username}</li>
-            <li>
-              <Link to="/">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="" onClick={handleSignout}>
-                Sign Out
-              </Link>
-            </li>
+        <div className=' flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
+          <ul className=' flex'>
+            <li><Link to="/">RECIPES</Link></li>
+            <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
           </ul>
-        </nav>
+        </div>
       ) : (
-        
+
         // if user not logged in
         <>
 

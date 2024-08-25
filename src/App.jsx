@@ -8,7 +8,7 @@ import * as authService from '../src/services/authService'; // import the authse
 import * as recipeService from '../src/services/recipeService'; // import the recipe
 import RecipeList from './components/RecipeList/RecipeList';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
-
+import RecipeForm from './components/RecipeForm/RecipeForm';
 
 export const AuthedUserContext = createContext(null);
 
@@ -23,6 +23,13 @@ const App = () => {
     setUser(null);
   };
 
+  const handleAddRecipe = async (formData) => {
+    const newRecipe = await recipeService.create(formData);
+    setRecipes([...recipes, newRecipe]);
+    console.log(newRecipe)
+    navigate('/recipes')
+
+  }
   useEffect(() => {
     const fetchAllRecipes = async () => {
       const recipesData = await recipeService.index()
@@ -44,6 +51,7 @@ const App = () => {
             <>
               <Route path="/" element={<RecipeList user={user} recipes={recipes} />} />
               <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+              <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
             </>
 
 

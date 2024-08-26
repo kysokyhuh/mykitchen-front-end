@@ -40,7 +40,7 @@ const RecipeDetails = (props) => {
         <p>Instructions:</p>
         {recipe.instructions.map((item, idx) => (
             <div key={idx}>
-                <p>Step: {idx + 1}. {item.description}</p>
+                <p>Step {idx + 1}: {item.description}</p>
             </div>
         ))}
 

@@ -43,6 +43,7 @@ const App = () => {
     navigate (`/recipes/${recipeId}`)
   }
 
+  
   useEffect(() => {
     const fetchAllRecipes = async () => {
       const recipesData = await recipeService.index()
@@ -63,7 +64,10 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<RecipeList user={user} recipes={recipes} />} />
-              <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
+
+              <Route path="/recipes/:recipeId" 
+              element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
+
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
             </>

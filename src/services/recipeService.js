@@ -71,10 +71,42 @@ async function updateRecipe(recipeId, formData) {
     }
 }
 
+const createComment = async (hootId, commentFormData) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${hootId}/comments`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(commentFormData),
+      });
+      return res.json();
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+const deleteComment = async (recipeId, commentId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${recipeId}/comments/${commentId}`, {
+            method: 'DELETE', 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        return res.json();
+    
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
     index,
     show,
     create,
     deleteRecipe,
     updateRecipe,
+    createComment,
+    deleteComment,
 }

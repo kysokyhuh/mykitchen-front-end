@@ -46,6 +46,7 @@ const App = () => {
     navigate (`/recipes/${recipeId}`)
   }
 
+
   
   useEffect(() => {
     const fetchAllRecipes = async () => {

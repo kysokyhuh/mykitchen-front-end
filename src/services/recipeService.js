@@ -44,7 +44,7 @@ const deleteRecipe = async (recipeId) => {
     try {
         const res = await fetch(`${BASE_URL}/${recipeId}`, {
             method: 'DELETE', 
-            headers : {
+            headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
         });
@@ -55,10 +55,26 @@ const deleteRecipe = async (recipeId) => {
     }
 }
 
+async function updateRecipe(recipeId, formData) {
+    try {
+        const res = await fetch(`${BASE_URL}/${recipeId}`, {
+            method: 'PUT', 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            }, 
+            body: JSON.stringify(formData),
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export {
     index,
     show,
     create,
     deleteRecipe,
+    updateRecipe,
 }

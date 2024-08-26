@@ -41,8 +41,10 @@ const RecipeDetails = (props) => {
         <p>{recipe.instructions}</p>
 
 
+        {/* checks for authorization */}
         {recipe.author._id === user._id && (
             <>
+                <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>
                 <button onClick={() => props.handleDeleteRecipe(recipeId)}>Delete</button>
             </>
         )}

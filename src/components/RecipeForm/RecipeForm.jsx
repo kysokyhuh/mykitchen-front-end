@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as recipeService from '/src/services/recipeService'; 
 
+
 const RecipeForm = (props) => {
+
+    const { recipeId } = useParams()
 
     const [formData, setFormData] = useState({
         name: '',
@@ -38,14 +41,29 @@ const RecipeForm = (props) => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        props.handleAddRecipe(formData)
+
+        if (recipeId) {
+            props.handleUpdateRecipe(recipeId, formData)
+        } else {
+            props.handleAddRecipe(formData)
+        }
     };
+
+    useEffect(() => {
+        const fetchRecipe = async () => {
+            const recipeData = await recipeService.show(recipeId);
+            setFormData(recipeData);
+        }
+        if(recipeId) fetchRecipe();
+    }, [recipeId])
+
+
 
   return (
     <div>
         <form onSubmit={handleSubmit}>
 
-        <p>Add Recipe</p>
+        <p>{ recipeId ? 'Edit Recipe' : 'Add Recipe' }</p>
 
         <label htmlFor="name">Recipe Name:</label>
         <input 

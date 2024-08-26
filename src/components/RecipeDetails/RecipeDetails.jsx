@@ -38,7 +38,11 @@ const RecipeDetails = (props) => {
         ))}
 
         <p>Instructions:</p>
-        <p>{recipe.instructions}</p>
+        {recipe.instructions.map((item, idx) => (
+            <div key={idx}>
+                <p>Step: {idx + 1}. {item.description}</p>
+            </div>
+        ))}
 
 
         {/* checks for authorization */}

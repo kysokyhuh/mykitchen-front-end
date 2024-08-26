@@ -5,6 +5,7 @@ import * as recipeService from '../../services/recipeService'
 import { Link } from 'react-router-dom'
 import { AuthedUserContext } from '../../App';
 import CommentForm from '../CommentForm/CommentForm'
+import { useNavigate } from 'react-router-dom'
 
 
 const RecipeDetails = (props) => {
@@ -12,17 +13,21 @@ const RecipeDetails = (props) => {
     const [recipe, setRecipe] = useState(null)
     const user = useContext(AuthedUserContext)
 
+    const navigate = useNavigate()
+
     const handleAddComment = async (commentFormData) => {
         const newComment = await recipeService.createComment(recipeId, commentFormData);
         setRecipe({...recipe, comments: [...recipe.comments, newComment]});
     }
 
     const handleDeleteComment = async (commentId) => {
-        const deletedComment = await recipeService.deleteComment(recipeId, commentId)
+        await recipeService.deleteComment(recipeId, commentId)
         setRecipe({
           ...recipe,
-          comments: recipe.comments.filter((comment) => comment._id !== deletedComment._id),
+          comments: recipe.comments.filter((comment) => comment._id !== commentId),
         });
+
+        navigate(`/recipes/${recipeId}`)
     }
 
     useEffect(() => {
@@ -84,6 +89,13 @@ const RecipeDetails = (props) => {
                         posted by {comment.author.username} {new Date(comment.createdAt).toLocaleDateString()}
                     </p>
                     <p>{comment.text}</p>
+
+                    {comment.author._id === user._id && (
+                        <>
+                            <Link>Edit</Link>
+                            <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                        </>
+                    )}
                 </div>
             </div>
 

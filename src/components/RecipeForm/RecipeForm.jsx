@@ -117,6 +117,7 @@ const RecipeForm = (props) => {
         <label htmlFor="ingredients">Ingredients:</label>
         {formData.ingredients.map((ingredient, idx) => (
           <div key={idx}>
+            <label>Name:</label>
             <input
               type="text"
               name="name"
@@ -124,6 +125,7 @@ const RecipeForm = (props) => {
               onChange={evt => handleIngredientChange(idx, evt)}
               required
             />
+            <label>Measurement:</label>
             <input
               type="text"
               name="measurement"

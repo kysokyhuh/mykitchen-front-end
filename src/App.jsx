@@ -9,6 +9,9 @@ import * as recipeService from '../src/services/recipeService'; // import the re
 import RecipeList from './components/RecipeList/RecipeList';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import RecipeForm from './components/RecipeForm/RecipeForm';
+import CommentForm from './components/CommentForm/CommentForm';
+
+
 
 export const AuthedUserContext = createContext(null);
 
@@ -70,6 +73,7 @@ const App = () => {
 
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
+              <Route path="/recipes/:recipeId/comments/:commentId/edit" element={<CommentForm />} />
             </>
 
           ) : ( 

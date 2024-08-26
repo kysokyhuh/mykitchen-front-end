@@ -40,10 +40,25 @@ const create = async (formData) => {
       }
 }
 
+const deleteRecipe = async (recipeId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${recipeId}`, {
+            method: 'DELETE', 
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        return res.json();
+    
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 export {
     index,
     show,
     create,
+    deleteRecipe,
 }

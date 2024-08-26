@@ -27,9 +27,16 @@ const App = () => {
     const newRecipe = await recipeService.create(formData);
     setRecipes([...recipes, newRecipe]);
     console.log(newRecipe)
-    navigate('/recipes')
+    navigate('/')
 
   }
+  
+  const handleDeleteRecipe = async (recipeId) => {
+    const deletedRecipe = await recipeService.deleteRecipe(recipeId)
+    setRecipes(recipes.filter((recipe) => recipe._id !== deletedRecipe._id))
+    navigate('/')
+  }
+
   useEffect(() => {
     const fetchAllRecipes = async () => {
       const recipesData = await recipeService.index()
@@ -50,10 +57,9 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<RecipeList user={user} recipes={recipes} />} />
-              <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+              <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
             </>
-
 
           ) : ( 
             <Route path="/" element={<Landing />} />

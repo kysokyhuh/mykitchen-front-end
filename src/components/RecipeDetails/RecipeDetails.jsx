@@ -1,11 +1,14 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import * as recipeService from '../../services/recipeService'
+import { Link } from 'react-router-dom'
+import { AuthedUserContext } from '../../App';
 
-const RecipeDetails = () => {
+const RecipeDetails = (props) => {
     const { recipeId } = useParams()
     const [recipe, setRecipe] = useState(null)
+    const user = useContext(AuthedUserContext)
 
     useEffect(() => {
         const fetchRecipe = async () => {
@@ -36,6 +39,14 @@ const RecipeDetails = () => {
 
         <p>Instructions:</p>
         <p>{recipe.instructions}</p>
+
+
+        {recipe.author._id === user._id && (
+            <>
+                <button onClick={() => props.handleDeleteRecipe(recipeId)}>Delete</button>
+            </>
+        )}
+
     </div>
     
   )

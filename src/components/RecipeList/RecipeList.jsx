@@ -9,11 +9,13 @@ const RecipeList = (props) => {
   const [publicRecipes, setPublicRecipes] = useState([]) 
 
 
+  // filters out the public recipes so that it will only be shown in the landing page
   useEffect(() => {
-       setPublicRecipes(props.recipes.filter(recipe => recipe.isPrivate === false));
+       setPublicRecipes(props.recipes.filter(recipe => recipe.isPublic === true));
   }, [props.recipes])
 
-  console.log('public: ', publicRecipes);
+
+
   return (
     <div>
       {publicRecipes.map((recipe) => (

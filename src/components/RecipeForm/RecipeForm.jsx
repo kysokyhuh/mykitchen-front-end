@@ -14,12 +14,21 @@ const RecipeForm = (props) => {
         cooktime: '',
         ingredients: [{ name: '', measurement: '' }],
         instructions: [{ description: '' }],
+        isPublic: true,
     })
 
-    const handleChange = (evt) => {
-        setFormData({ ...formData, [evt.target.name]: evt.target.value });
-    };
 
+    // use destructuring to extract properties from target
+    
+    const handleChange = (evt) => {
+      const { name, value, type, checked } = evt.target;
+
+      // if the input is a checkbox, then whatever the value in checked is will be stored
+      // else, applies to other inputs 
+      setFormData({...formData, [name]: type === 'checkbox' ? checked : value});
+  };
+  
+    
 
     const handleIngredientChange = (ingredientIdx, evt) => {
        const newIngredient = formData.ingredients.map((ingredient, idx) => {
@@ -155,6 +164,13 @@ const RecipeForm = (props) => {
         ))}
         <button type="button" onClick={handleAddInstruction}>Add Step</button>
 
+        <label htmlFor="isPublic">Share with Community?</label>
+        <input
+           type="checkbox"
+           name="isPublic"
+           checked={formData.isPublic}
+           onChange={handleChange}
+        />
     
         <button type="submit">SUBMIT</button>
         

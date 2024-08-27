@@ -29,29 +29,36 @@ const RecipeForm = (props) => {
   };
   
     
-
     const handleIngredientChange = (ingredientIdx, evt) => {
+      // creates a new array 
        const newIngredient = formData.ingredients.map((ingredient, idx) => {
-        if (ingredientIdx !== idx) return ingredient;
-        return { ...ingredient, [evt.target.name]: evt.target.value };
+        // if this is the ingredient being changed, then update it
+        if (ingredientIdx === idx) {
+          return { ...ingredient, [evt.target.name]: evt.target.value };
+        }
+        // otherwise, keep it as is
+        return ingredient;
        })
-
        setFormData({ ...formData, ingredients: newIngredient });
     }
 
+    // adds new blank forms 
     const handleAddIngredient = () => {
         setFormData({...formData, ingredients: [...formData.ingredients, { name: '', measurement: '' }]});
     };
     
-      const handleRemoveIngredient = (idx) => {
+    // 
+    const handleRemoveIngredient = (idx) => {
         setFormData({...formData,ingredients: formData.ingredients.filter((_, sidx) => idx !== sidx)});
     };
     
-
+  
     const handleInstructionChange = (instructionIdx, evt) => {
         const newInstruction = formData.instructions.map((instruction, idx) => {
-            if (instructionIdx !== idx) return instruction;
-            return {...instruction, [evt.target.name]: evt.target.value };
+            if (instructionIdx === idx){
+              return {...instruction, [evt.target.name]: evt.target.value };
+            } 
+            return instruction;
         })
 
         setFormData({ ...formData, instructions: newInstruction });
@@ -62,7 +69,7 @@ const RecipeForm = (props) => {
         setFormData({...formData, instructions: [...formData.instructions, { description: '' }]});
     };
     
-      const handleRemoveInstruction = (idx) => {
+    const handleRemoveInstruction = (idx) => {
         setFormData({...formData, instructions: formData.instructions.filter((_, sidx) => idx !== sidx)});
     };
     

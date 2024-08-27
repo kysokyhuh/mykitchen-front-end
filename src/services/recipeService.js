@@ -24,6 +24,19 @@ const show = async (recipeId) => {
       }
 }
 
+// show user's recipes 
+
+const showUserRecipes = async (userId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/user/${userId}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const create = async (formData) => {
     try {
         const res = await fetch(BASE_URL, {
@@ -118,6 +131,9 @@ const updateComment = async (recipeId, commentId, formData) => {
         console.log(error)
     }
 }
+
+
+
 export {
     index,
     show,
@@ -127,4 +143,5 @@ export {
     createComment,
     deleteComment,
     updateComment,
+    showUserRecipes,
 }

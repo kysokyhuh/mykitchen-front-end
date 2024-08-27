@@ -25,10 +25,11 @@ const NavBar = ({ handleSignout }) => {
     <>
       {user ? (
         <div className=' flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
-          <ul className=' flex'>
-            <li><Link to="/">RECIPES</Link></li>
-            <li><Link to="/recipes/new" >ADD RECIPE</Link></li>
-            <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
+          <ul className=' flex gap-4 '>
+            <li ><Link to="/">RECIPES</Link></li>
+            <li ><Link to="/recipes/new" >ADD RECIPE</Link></li>
+            <li ><Link to={`/recipes/user/${user._id}`}>MY PROFILE</Link></li>
+            <li ><Link to="" onClick={handleSignout}>Sign Out</Link></li>
           </ul>
         </div>
       ) : (

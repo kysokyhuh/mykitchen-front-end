@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 const RecipeList = (props) => {
   const user = useContext(AuthedUserContext);
+  
   const [publicRecipes, setPublicRecipes] = useState([]) 
 
 

@@ -10,7 +10,7 @@ import RecipeList from './components/RecipeList/RecipeList';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import RecipeForm from './components/RecipeForm/RecipeForm';
 import CommentForm from './components/CommentForm/CommentForm';
-
+import UserRecipeDetails from './components/UserRecipeDetails/UserRecipeDetails';
 
 
 export const AuthedUserContext = createContext(null);
@@ -71,6 +71,7 @@ const App = () => {
 
               <Route path="/recipes/:recipeId" 
               element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
+              <Route path="/recipes/user/:userId" element={<UserRecipeDetails />} />
 
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />

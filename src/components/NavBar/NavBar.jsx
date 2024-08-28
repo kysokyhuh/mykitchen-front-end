@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosClose } from "react-icons/io";
 
+
 const NavBar = ({ handleSignout }) => {
   const [nav, setNav] = useState(false)
   const user = useContext(AuthedUserContext);
@@ -23,6 +24,7 @@ const NavBar = ({ handleSignout }) => {
 
   return (
     <>
+
       {user ? (
         <div className=' flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
           <ul className=' flex gap-4 '>

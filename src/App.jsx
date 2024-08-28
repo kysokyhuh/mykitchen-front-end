@@ -60,19 +60,20 @@ const App = () => {
     if (user) fetchAllRecipes()
   }, [user])
 
-
   return (
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
 
-          <div className=" flex justify-center items-center flex-col pt-28 min-w-[400px] w-full">
+        {user && (
+            <div className=" flex justify-center items-center flex-col min-w-[400px] w-full">
               <div className="w-[450px]">
-                  <SearchBar setSearchResults={setSearchResults} />
+                  <SearchBar setSearchResults={setSearchResults}/>
                   <SearchResults searchResults={searchResults} />
-
               </div>
           </div>
+        )}
+        
 
         <Routes>
           {/* if user is logged in */}

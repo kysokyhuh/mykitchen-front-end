@@ -20,10 +20,12 @@ const RecipeList = (props) => {
   return (
     <div>
       {publicRecipes.map((recipe) => (
-
-          <Link key={recipe._id} to={`/recipes/${recipe._id}`}>
-              <h2>{recipe.name}</h2>
-          </Link>
+        <div key={recipe._id}>
+            <Link key={recipe._id} to={`/recipes/${recipe._id}`}>
+              {/* <img src={recipe.imageUrl} alt={`${recipe.name}Img`} /> */}
+                <h2>{recipe.name}</h2>
+            </Link>
+        </div>
 
       ))}
       

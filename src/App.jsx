@@ -11,13 +11,15 @@ import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import RecipeForm from './components/RecipeForm/RecipeForm';
 import CommentForm from './components/CommentForm/CommentForm';
 import UserRecipeDetails from './components/UserRecipeDetails/UserRecipeDetails';
-
+import SearchBar from './components/SearchBar/SearchBar';
+import SearchResults from  './components/SearchResults/SearchResults';
 
 export const AuthedUserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
   const [recipes, setRecipes] = useState([])
+  const [searchResults, setSearchResults] = useState([])
 
   const navigate = useNavigate()
 
@@ -63,6 +65,15 @@ const App = () => {
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
+
+          <div className=" flex justify-center items-center flex-col pt-28 min-w-[400px] w-full">
+              <div className="w-[450px]">
+                  <SearchBar setSearchResults={setSearchResults} />
+                  <SearchResults searchResults={searchResults} />
+
+              </div>
+          </div>
+
         <Routes>
           {/* if user is logged in */}
           {user ? (

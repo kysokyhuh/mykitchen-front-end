@@ -15,6 +15,7 @@ const RecipeForm = (props) => {
         ingredients: [{ name: '', measurement: '' }],
         instructions: [{ description: '' }],
         isPublic: true,
+        imageUrl: '',
     })
 
 
@@ -74,9 +75,29 @@ const RecipeForm = (props) => {
     };
     
 
+    const handleFileChange = (evt) => {
+      const file = evt.target.files[0]; 
+      setFormData({ ...formData, imageFile: file }); 
+    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
+
+        // const data = new FormData()
+        // data.append('name', formData.name);
+        // data.append('preptime', formData.preptime);
+        // data.append('cooktime', formData.cooktime);
+        // data.append('ingredients', JSON.stringify(formData.ingredients));
+        // data.append('instructions', JSON.stringify(formData.instructions));
+        // data.append('isPublic', formData.isPublic);
+        
+        // if(formData.imageFile){
+        //   data.append('imageUrl', formData.imageFile);
+        // }
+      
+        
+        // console.log('img', data.get('imageUrl'));
+
 
         if (recipeId) {
             props.handleUpdateRecipe(recipeId, formData)
@@ -97,7 +118,7 @@ const RecipeForm = (props) => {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
         <p>{ recipeId ? 'Edit Recipe' : 'Add Recipe' }</p>
 
         <label htmlFor="name">Recipe Name:</label>
@@ -170,6 +191,13 @@ const RecipeForm = (props) => {
             </div>
         ))}
         <button type="button" onClick={handleAddInstruction}>Add Step</button>
+        
+        {/* <label htmlFor="imageUrl">Upload Image: </label>
+        <input 
+          type="file" 
+          name="imageUrl"
+          onChange={handleFileChange}
+        /> */}
 
         <label htmlFor="isPublic">Share with Community?</label>
         <input

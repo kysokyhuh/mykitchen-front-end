@@ -39,7 +39,8 @@ const App = () => {
   const handleDeleteRecipe = async (recipeId) => {
     const deletedRecipe = await recipeService.deleteRecipe(recipeId)
     setRecipes(recipes.filter((recipe) => recipe._id !== deletedRecipe._id))
-    navigate('/')
+    // navigates back to the previous page
+    navigate(-1)
   }
 
   const handleUpdateRecipe = async (recipeId, formData) => {

@@ -2,7 +2,8 @@ import { AuthedUserContext } from '../../App';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { FaRegHeart } from "react-icons/fa";
+import { BsBookmarkHeart } from "react-icons/bs";
+import { BsBookmarkHeartFill } from "react-icons/bs";
 
 const RecipeList = (props) => {
   const user = useContext(AuthedUserContext);
@@ -27,7 +28,7 @@ const RecipeList = (props) => {
               {/* <img src={recipe.imageUrl} alt={`${recipe.name}Img`} /> */}
                 <h2>{recipe.name}</h2>
             </Link>
-            <FaRegHeart />
+            <BsBookmarkHeartFill className=' hover:fill-red-400'/>
           </div>
         </div>
 

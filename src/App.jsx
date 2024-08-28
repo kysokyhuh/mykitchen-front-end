@@ -69,7 +69,7 @@ const App = () => {
             <div className=" flex justify-center items-center flex-col min-w-[400px] w-full">
               <div className="w-[450px]">
                   <SearchBar setSearchResults={setSearchResults}/>
-                  <SearchResults searchResults={searchResults} />
+                  <SearchResults searchResults={searchResults} setSearchResults={setSearchResults} />
               </div>
           </div>
         )}

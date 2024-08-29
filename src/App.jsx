@@ -46,12 +46,19 @@ const App = () => {
 
   const handleUpdateRecipe = async (recipeId, formData) => {
     const updatedRecipe = await recipeService.updateRecipe(recipeId, formData)
-    setRecipes(recipes.map((recipe) => (recipe._id ? updatedRecipe : recipe )));
+    setRecipes(recipes.map((recipe) => (recipe._id === updatedRecipe._id ? updatedRecipe : recipe )));
     navigate (`/recipes/${recipeId}`)
   }
 
+  const handleSaveRecipe = async (userId, recipeId) => {
+    const saveRecipe = await recipeService.saveRecipe(userId, recipeId)
+    console.log('recipe is saved', saveRecipe)
+   // setClickedRecipe(!clickedRecipe)
+    setRecipes(recipes.map(recipe => recipe._id === saveRecipe._id ? saveRecipe : recipe))
 
-  
+  }
+
+
   useEffect(() => {
     const fetchAllRecipes = async () => {
       const recipesData = await recipeService.index()
@@ -81,7 +88,12 @@ const App = () => {
           {/* if user is logged in */}
           {user ? (
             <>
-              <Route path="/" element={<RecipeList user={user} recipes={recipes} />} />
+              <Route path="/" element={<RecipeList 
+              user={user} 
+              recipes={recipes}
+              setRecipes={setRecipes}
+              handleSaveRecipe={handleSaveRecipe}
+                />} />
 
               <Route path="/recipes/:recipeId" 
               element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />

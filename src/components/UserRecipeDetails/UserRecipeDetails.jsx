@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { AuthedUserContext } from '../../App';
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react';
@@ -27,8 +27,9 @@ const UserRecipeDetails = () => {
         <p>Hello {user.username}!</p>
         <p>Here are your recipes</p>
 
-        {recipes.map((recipe) => (
-            <div key={recipe._id}>
+        {recipes.map((recipe, idx) => (
+            <div key={idx}>
+                <img className=' w-64 h-44' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
                 <Link to={`/recipes/${recipe._id}`}>{recipe.name}</Link>
             </div>
         ))}

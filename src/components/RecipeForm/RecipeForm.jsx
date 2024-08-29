@@ -192,12 +192,13 @@ const RecipeForm = (props) => {
         ))}
         <button type="button" onClick={handleAddInstruction}>Add Step</button>
         
-        {/* <label htmlFor="imageUrl">Upload Image: </label>
+        <label htmlFor="imageUrl">Upload Image: </label>
         <input 
-          type="file" 
+          type="text" 
           name="imageUrl"
-          onChange={handleFileChange}
-        /> */}
+          value={formData.imageUrl}
+          onChange={handleChange}
+        />
 
         <label htmlFor="isPublic">Share with Community?</label>
         <input

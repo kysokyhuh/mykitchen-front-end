@@ -25,7 +25,12 @@ const SavedRecipes = () => {
     <div>
         {savedRecipes.map((recipe) => (
             <div key={recipe._id}>
-                <Link to={`/recipes/${recipe._id}`}>{recipe.name}</Link>
+
+               <Link to={`/recipes/${recipe._id}`}>
+                    <img className=' w-64 h-44' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
+                    <h2>{recipe.name}</h2>
+                </Link>
+
             </div>
         ))}
     </div>

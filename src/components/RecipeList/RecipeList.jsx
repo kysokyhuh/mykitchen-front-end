@@ -1,6 +1,6 @@
 import { AuthedUserContext } from '../../App';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { json, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { BsBookmarkHeart } from "react-icons/bs";
 import { BsBookmarkHeartFill } from "react-icons/bs";
@@ -12,6 +12,7 @@ const RecipeList = (props) => {
   
   const [publicRecipes, setPublicRecipes] = useState([]) 
   const [clickedRecipe, setClickedRecipe ] = useState({})
+  
 
 
   const handleSaveRecipe = async (userId, recipeId) => {
@@ -20,7 +21,7 @@ const RecipeList = (props) => {
 
     setClickedRecipe(prevState => ({
       ...prevState,
-      [recipeId]: true,
+      [recipeId]: true, 
     }));
 
   }
@@ -28,8 +29,14 @@ const RecipeList = (props) => {
   const handleUnsaveRecipe = async (userId, recipeId) => {
     const unsaveRecipe = await recipeService.removeFavorite(userId, recipeId)
     console.log('unfavorite recipe', unsaveRecipe)
+    
+    setClickedRecipe(prevState => ({
+      ...prevState,
+      [recipeId]: false, 
+    }));
 
   }
+  
 
   // filters out the public recipes so that it will only be shown in the landing page
   useEffect(() => {
@@ -51,8 +58,9 @@ const RecipeList = (props) => {
                 <h2>{recipe.name}</h2>
             </Link>
 
-            <div onClick={() => handleUnsaveRecipe(user._id, recipe._id)}>
-              <BsBookmarkHeartFill className={`cursor-pointer ${ clickedRecipe[recipe._id] ? 'fill-red-400' : 'hover:fill-red-400'}`} />
+            <div onClick={() => !clickedRecipe[recipe._id] ? 
+              handleSaveRecipe(user._id, recipe._id) : handleUnsaveRecipe(user._id, recipe._id)  }>
+              <BsBookmarkHeartFill className={`cursor-pointer hover:fill-red-400 ${ clickedRecipe[recipe._id] ? 'fill-red-400' : 'fill-black'}`} />
             </div>
 
           </div>

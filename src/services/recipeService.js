@@ -162,6 +162,17 @@ const removeFavorite = async (userId, recipeId) => {
     }
 }
 
+const savedRecipes = async (userId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/user/${userId}/favorites`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     index,
     show,
@@ -174,4 +185,5 @@ export {
     showUserRecipes,
     saveRecipe,
     removeFavorite,
+    savedRecipes,
 }

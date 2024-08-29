@@ -31,6 +31,8 @@ const NavBar = ({ handleSignout }) => {
             <li ><Link to="/">RECIPES</Link></li>
             <li ><Link to="/recipes/new" >ADD RECIPE</Link></li>
             <li ><Link to={`/recipes/user/${user._id}`}>MY RECIPES</Link></li>
+            <li ><Link to={`/recipes/user/${user._id}/favorites`}>SAVED RECIPES</Link></li>
+            
             <li ><Link to="" onClick={handleSignout}>Sign Out</Link></li>
           </ul>
         </div>

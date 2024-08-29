@@ -84,9 +84,9 @@ async function updateRecipe(recipeId, formData) {
     }
 }
 
-const createComment = async (hootId, commentFormData) => {
+const createComment = async (recipeId, commentFormData) => {
     try {
-      const res = await fetch(`${BASE_URL}/${hootId}/comments`, {
+      const res = await fetch(`${BASE_URL}/${recipeId}/comments`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -132,7 +132,35 @@ const updateComment = async (recipeId, commentId, formData) => {
     }
 }
 
+const saveRecipe = async (userId, recipeId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/user/${userId}/favorites/${recipeId}`, {
+            method: 'POST', 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+              },
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error)
+    }
+}
 
+const removeFavorite = async (userId, recipeId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/user/${userId}/favorites/${recipeId}`, {
+            method: 'DELETE', 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+              },
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export {
     index,
@@ -144,4 +172,6 @@ export {
     deleteComment,
     updateComment,
     showUserRecipes,
+    saveRecipe,
+    removeFavorite,
 }

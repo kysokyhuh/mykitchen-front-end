@@ -56,7 +56,7 @@ const NavBar = ({ handleSignout }) => {
           </div>
 
 
-          <div className={!nav ? 'fixed left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500' : 'fixed left-[-100%]'}>
+          <div className={!nav ? 'fixed z-50 left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500' : 'fixed left-[-100%]'}>
             <ul onClick={handleNav} className='pt-24 uppercase'>
               <li className='p-4'><Link to="/">RECIPES</Link></li>
               <li className='p-4'><Link to="/recipes/new">ADD RECIPE</Link></li>

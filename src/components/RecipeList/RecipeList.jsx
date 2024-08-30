@@ -18,7 +18,7 @@ const RecipeList = (props) => {
         <div key={idx}>
           <div className=' w-72 h-[300px] rounded overflow-hidden shadow-lg mt-4 hover:shadow-redorange'>
              
-             <div className=' relative flex'>
+             <div className=' relative flex z-10'>
                 <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
                 <div className=' absolute top-3 right-5 p-1 bg-white rounded-md shadow-lg' onClick={() => props.handleSaveRecipe(user._id, recipe._id) }>
                   <BsBookmarkHeartFill size={20} className={`${ recipe.savedBy.includes(user._id) ? 'fill-red-400' : 'fill-black'} cursor-pointer hover:fill-red-400`} />
@@ -27,7 +27,7 @@ const RecipeList = (props) => {
 
             <Link to={`/recipes/${recipe._id}`}>
                 <h2 className=' text-lg text-center mb-0'>{recipe.name}</h2>
-                <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.username}</p>
+                <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.firstname}</p>
             </Link>
 
           <div className="px-8 pt-4 pb-2 flex">

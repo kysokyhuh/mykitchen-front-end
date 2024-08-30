@@ -28,7 +28,7 @@ const NavBar = ({ handleSignout }) => {
     <>
 
       {user ? (
-        <div className=' flex justify-between items-center h-16 max-w-[1240px] mx-auto px-4
+        <div className='max-w-full flex justify-between items-center h-16 mx-auto px-4
          bg-sage font-literata font-bold text-cream'>
             <div className=' flex italic'>
               <MdFoodBank size={35} />
@@ -72,14 +72,14 @@ const NavBar = ({ handleSignout }) => {
         // if user not logged in
         <>
 
-        <div className=' flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4 bg-sage font-literata font-bold text-cream '>
+        <div className=' max-w-full flex justify-between items-center h-16  mx-auto px-4 bg-sage font-literata font-bold text-cream '>
             <div className=' flex italic'>
               <MdFoodBank size={35} />
               <h1 className=" text-3xl">Kusina Ku</h1>
             </div>
             <ul className='hidden md:flex'>
-              <li className='p-4'><Link to="/signin">SIGN IN</Link></li>
-              <li className='p-4'><Link to="/signup">SIGN UP</Link></li>
+              <li className='p-4 hover:text-darksage'><Link to="/signin">SIGN IN</Link></li>
+              <li className='p-4 hover:text-darksage'><Link to="/signup">SIGN UP</Link></li>
             </ul>
 
             <div onClick={handleNav} className='block md:hidden'>

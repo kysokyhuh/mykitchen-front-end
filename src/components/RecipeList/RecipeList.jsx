@@ -13,9 +13,10 @@ const RecipeList = (props) => {
 
 
   return (
-    <div className=' flex flex-col justify-center items-center font-albert font-semibold'>
+    <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
+                     gap-8'>
       {props.recipes.map((recipe, idx) => (
-        <div key={idx}>
+        <div key={idx} className=' '>
           <div className=' w-72 h-[300px] rounded overflow-hidden shadow-lg mt-4 hover:shadow-redorange'>
              
              <div className=' relative flex z-10'>

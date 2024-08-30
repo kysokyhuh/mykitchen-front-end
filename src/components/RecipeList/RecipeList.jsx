@@ -4,6 +4,8 @@ import { json, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { BsBookmarkHeart } from "react-icons/bs";
 import { BsBookmarkHeartFill } from "react-icons/bs";
+import { CiClock2 } from "react-icons/ci";
+import { PiCookingPotLight } from "react-icons/pi";
 import * as recipeService from '/src/services/recipeService'; 
 
 const RecipeList = (props) => {
@@ -11,20 +13,33 @@ const RecipeList = (props) => {
 
 
   return (
-    <div>
+    <div className=' flex flex-col justify-center items-center font-albert font-semibold'>
       {props.recipes.map((recipe, idx) => (
         <div key={idx}>
-          <div className='flex'>
+          <div className=' w-72 h-[300px] rounded overflow-hidden shadow-lg mt-4 hover:shadow-redorange'>
+             
+             <div className=' relative flex'>
+                <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
+                <div className=' absolute top-3 right-5 p-1 bg-white rounded-md shadow-lg' onClick={() => props.handleSaveRecipe(user._id, recipe._id) }>
+                  <BsBookmarkHeartFill size={20} className={`${ recipe.savedBy.includes(user._id) ? 'fill-red-400' : 'fill-black'} cursor-pointer hover:fill-red-400`} />
+                </div>
+             </div>
 
             <Link to={`/recipes/${recipe._id}`}>
-              <img className=' w-64 h-44' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
-                <h2>{recipe.name}</h2>
+                <h2 className=' text-lg text-center mb-0'>{recipe.name}</h2>
+                <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.username}</p>
             </Link>
 
-         
-            <div onClick={() => props.handleSaveRecipe(user._id, recipe._id) }>
-              <BsBookmarkHeartFill className={`${ recipe.savedBy.includes(user._id) ? 'fill-red-400' : 'fill-black'} cursor-pointer hover:fill-red-400`} />
-            </div>
+          <div className="px-8 pt-4 pb-2 flex">
+      
+            <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+              <CiClock2 className=' mr-2' size={20}/> {recipe.preptime}
+              </span>
+            <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+              <PiCookingPotLight className=' mr-2' size={20}/> {recipe.cooktime}
+              </span>
+            
+          </div>
 
           </div>
         </div>

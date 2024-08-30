@@ -53,8 +53,7 @@ const App = () => {
   const handleSaveRecipe = async (userId, recipeId) => {
     const saveRecipe = await recipeService.saveRecipe(userId, recipeId)
     console.log('recipe is saved', saveRecipe)
-   // setClickedRecipe(!clickedRecipe)
-    setRecipes(recipes.map(recipe => recipe._id === saveRecipe._id ? saveRecipe : recipe))
+    setRecipes(recipes.map((recipe) => (recipe._id === saveRecipe._id ? saveRecipe : recipe)))
 
   }
 

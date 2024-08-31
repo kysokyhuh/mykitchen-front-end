@@ -1,12 +1,14 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import * as recipeService from '/src/services/recipeService'; 
-
+import { AuthedUserContext } from '../../App';
+import Greeting from '../Greeting/Greeting';
 
 const RecipeForm = (props) => {
 
     const { recipeId } = useParams()
+    const user = useContext(AuthedUserContext);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -75,29 +77,9 @@ const RecipeForm = (props) => {
     };
     
 
-    const handleFileChange = (evt) => {
-      const file = evt.target.files[0]; 
-      setFormData({ ...formData, imageFile: file }); 
-    };
-
+  
     const handleSubmit = (evt) => {
         evt.preventDefault();
-
-        // const data = new FormData()
-        // data.append('name', formData.name);
-        // data.append('preptime', formData.preptime);
-        // data.append('cooktime', formData.cooktime);
-        // data.append('ingredients', JSON.stringify(formData.ingredients));
-        // data.append('instructions', JSON.stringify(formData.instructions));
-        // data.append('isPublic', formData.isPublic);
-        
-        // if(formData.imageFile){
-        //   data.append('imageUrl', formData.imageFile);
-        // }
-      
-        
-        // console.log('img', data.get('imageUrl'));
-
 
         if (recipeId) {
             props.handleUpdateRecipe(recipeId, formData)
@@ -116,103 +98,160 @@ const RecipeForm = (props) => {
 
 
 
-  return (
-    <div>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <p>{ recipeId ? 'Edit Recipe' : 'Add Recipe' }</p>
-
-        <label htmlFor="name">Recipe Name:</label>
-        <input 
-        type="text" 
-        name="name"
-        id="name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-        />
-
-        <label htmlFor="preptime">Preptime:</label>
-        <input
-        type="text" 
-        name="preptime"
-        id="preptime"
-        value={formData.preptime}
-        onChange={handleChange}
-        required
-        />
-
-        <label htmlFor="cooktime">Cooktime:</label>
-        <input
-        type="text" 
-        name="cooktime"
-        id="cooktime"
-        value={formData.cooktime}
-        onChange={handleChange}
-        required
-        />
-
-        <label htmlFor="ingredients">Ingredients:</label>
-        {formData.ingredients.map((ingredient, idx) => (
-          <div key={idx}>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={ingredient.name}
-              onChange={evt => handleIngredientChange(idx, evt)}
-              required
-            />
-            <label>Measurement:</label>
-            <input
-              type="text"
-              name="measurement"
-              value={ingredient.measurement}
-              onChange={evt => handleIngredientChange(idx, evt)}
-              required
-            />
-
-            <button type="button" onClick={() => handleRemoveIngredient(idx)}>Remove</button>
+    return (
+      <>
+        <Greeting user={user} />
+        <div className='flex justify-center items-center'>
+          <div className='font-albert w-auto p-8 rounded-lg'>
+            <p className='font-literata font-bold text-redorange text-2xl text-center mb-6'>{recipeId ? 'Edit Recipe' : 'Add Recipe'}</p>
+  
+            <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+              <div className='flex flex-col'>
+                <label htmlFor="name">Recipe Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className='p-2 rounded border-2 border-cream'
+                  required
+                />
+              </div>
+  
+              <div className='flex flex-col'>
+                <label htmlFor="preptime">Preptime:</label>
+                <input
+                  type="text"
+                  name="preptime"
+                  id="preptime"
+                  value={formData.preptime}
+                  onChange={handleChange}
+                  className='p-2 rounded border-2 border-cream'
+                  required
+                />
+              </div>
+  
+              <div className='flex flex-col'>
+                <label htmlFor="cooktime">Cooktime:</label>
+                <input
+                  type="text"
+                  name="cooktime"
+                  id="cooktime"
+                  value={formData.cooktime}
+                  onChange={handleChange}
+                  className='p-2 rounded border-2 border-cream'
+                  required
+                />
+              </div>
+  
+              <div className='flex flex-col'>
+                <label htmlFor="ingredients">Ingredients:</label>
+                {formData.ingredients.map((ingredient, idx) => (
+                  <div key={idx} className='flex gap-2'>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Ingredient"
+                      value={ingredient.name}
+                      onChange={evt => handleIngredientChange(idx, evt)}
+                      className='p-2 rounded border-2 border-cream flex-1 mt-1'
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="measurement"
+                      placeholder="Measurement"
+                      value={ingredient.measurement}
+                      onChange={evt => handleIngredientChange(idx, evt)}
+                      className='p-2 rounded border-2 border-cream flex-1 mt-1'
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveIngredient(idx)}
+                      className='bg-redorange text-white rounded w-16 h-11 mt-1
+                      hover:bg-white hover:text-redorange hover:border-2 hover:border-redorange'
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleAddIngredient}
+                  className='bg-sage text-white rounded px-2 mt-2
+                   hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage'
+                >
+                  Add Ingredient
+                </button>
+              </div>
+  
+              <div className='flex flex-col'>
+                <label htmlFor="instructions">Instructions</label>
+                {formData.instructions.map((instruction, idx) => (
+                  <div key={idx} className='flex gap-2'>
+                    <textarea
+                      cols="40"
+                      rows="1"
+                      name="description"
+                      placeholder="Instruction"
+                      value={instruction.description}
+                      onChange={evt => handleInstructionChange(idx, evt)}
+                      className='p-2 rounded border-2 border-cream flex-1 mt-1'
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveInstruction(idx)}
+                      className='bg-redorange text-white rounded w-16 h-11 mt-1
+                      hover:bg-white hover:text-redorange hover:border-2 hover:border-redorange'
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleAddInstruction}
+                  className='bg-sage text-white rounded px-2 mt-2
+                  hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage'
+                >
+                  Add Step
+                </button>
+              </div>
+  
+              <div className='flex flex-col'>
+                <label htmlFor="imageUrl">Upload Image URL: </label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  value={formData.imageUrl}
+                  onChange={handleChange}
+                  className='p-2 rounded border-2 border-cream'
+                />
+              </div>
+  
+              <div className='flex items-center gap-2'>
+                <label htmlFor="isPublic">Share with Community?</label>
+                <input
+                  type="checkbox"
+                  name="isPublic"
+                  checked={formData.isPublic}
+                  onChange={handleChange}
+                  className='h-4 w-4'
+                />
+              </div>
+  
+              <button type="submit" className='bg-darksage text-white rounded p-2 mt-4 
+              hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage'>
+                SUBMIT
+              </button>
+            </form>
           </div>
-        ))}
-        <button type="button"  onClick={handleAddIngredient}>Add Ingredient</button>
-
-        <label htmlFor="instructions">Instructions</label>
-        {formData.instructions.map((instruction, idx) => (
-            <div key={idx}>
-            <textarea
-              cols="40"
-              rows="1"
-              name="description"
-              value={instruction.description}
-              onChange={evt => handleInstructionChange(idx, evt)}
-              required
-            />
-            <button type="button"  onClick={() => handleRemoveInstruction(idx)}>Remove</button>
-            </div>
-        ))}
-        <button type="button" onClick={handleAddInstruction}>Add Step</button>
-        
-        <label htmlFor="imageUrl">Upload Image: </label>
-        <input 
-          type="text" 
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="isPublic">Share with Community?</label>
-        <input
-           type="checkbox"
-           name="isPublic"
-           checked={formData.isPublic}
-           onChange={handleChange}
-        />
-    
-        <button type="submit">SUBMIT</button>
-        
-        </form>
-    </div>
-  )
+        </div>
+      </>
+    );
 }
 
 export default RecipeForm

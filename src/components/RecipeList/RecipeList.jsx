@@ -8,6 +8,8 @@ import { CiClock2 } from "react-icons/ci";
 import { PiCookingPotLight } from "react-icons/pi";
 import * as recipeService from '/src/services/recipeService'; 
 
+import Greeting from '../Greeting/Greeting';
+
 const RecipeList = (props) => {
   const user = useContext(AuthedUserContext);
 
@@ -15,14 +17,14 @@ const RecipeList = (props) => {
   return (
 
     <>
-    <div className=' ml-10 mb-9 mt-8 font-literata italic md:text-4xl text-2xl font-semibold'>
-       <p className=' text-redorange'>Hey {user.username}!</p>
-        <p className=' text-lg md:text-2xl '>What are you craving for today?</p> 
-    </div>
+   
+    <Greeting user={user}/>
+
     <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
                      gap-8'>
       {props.recipes.map((recipe, idx) => (
-        <div key={idx} className=' '>
+        <div key={idx}>
+            <Link to={`/recipes/${recipe._id}`}>
             <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'} md:mt-4 hover:shadow-redorange`}>
              
              <div className=' relative flex z-10'>
@@ -32,23 +34,23 @@ const RecipeList = (props) => {
                 </div>
              </div>
 
-            <Link to={`/recipes/${recipe._id}`}>
                 <h2 className=' text-lg text-center mb-0'>{recipe.name}</h2>
                 <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.firstname}</p>
-            </Link>
 
-          <div className="px-8 pt-4 pb-2 flex">
-      
-            <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
-              <CiClock2 className=' mr-2' size={20}/> {recipe.preptime}
-              </span>
-            <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
-              <PiCookingPotLight className=' mr-2' size={20}/> {recipe.cooktime}
-              </span>
+            <div className="px-8 pt-4 pb-2 flex">
+        
+              <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+                <CiClock2 className=' mr-2' size={20}/> {recipe.preptime}
+                </span>
+              <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+                <PiCookingPotLight className=' mr-2' size={20}/> {recipe.cooktime}
+                </span>
+              
+            </div>
+
+            </div>
             
-          </div>
-
-          </div>
+            </Link>
         </div>
 
       ))}

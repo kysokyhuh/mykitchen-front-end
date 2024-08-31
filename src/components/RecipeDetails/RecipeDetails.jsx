@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { AuthedUserContext } from '../../App';
 import CommentForm from '../CommentForm/CommentForm'
 import { useNavigate } from 'react-router-dom'
+import Greeting from '../Greeting/Greeting'
 
 
 const RecipeDetails = (props) => {
@@ -44,11 +45,13 @@ const RecipeDetails = (props) => {
 
   return (
     <div>
+        <Greeting user={user}/>
         <h1 className=' text-4xl'>{recipe.name}</h1>
         <p>
             posted by {recipe.author.firstname} 
         </p>
 
+        <img src={`${recipe.imageUrl}`} alt="" />
         <p>Preptime: {recipe.preptime}</p>
         <p>Cooktime: {recipe.cooktime}</p>
         <p>Ingredients: </p>

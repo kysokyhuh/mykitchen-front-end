@@ -35,9 +35,9 @@ const SearchBar = ({ setSearchResults }) => {
 
 
   return (
-    <div className=' bg-[#2f3134] w-full rounded-lg h-[12]
-        p-4 shadow-lg flex items-center'>
-        <FaSearch className=' text-violet-500 cursor-pointer'/>
+    <div className=' bg-white md:w-[900px] w-[410px] rounded-lg md:h-16 h-12
+        p-4 shadow-lg flex items-center border-2 border-cream absolute md:top-24 top-40'>
+        <FaSearch className=' text-darksage cursor-pointer'/>
       
       <input
       className='bg-transparent border-none outline-none text-xl ml-1' 

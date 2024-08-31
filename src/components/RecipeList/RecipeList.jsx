@@ -13,11 +13,17 @@ const RecipeList = (props) => {
 
 
   return (
+
+    <>
+    <div className=' ml-10 mb-9 mt-8 font-literata italic md:text-4xl text-2xl font-semibold'>
+       <p className=' text-redorange'>Hey {user.username}!</p>
+        <p className=' text-lg md:text-2xl '>What are you craving for today?</p> 
+    </div>
     <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
                      gap-8'>
       {props.recipes.map((recipe, idx) => (
         <div key={idx} className=' '>
-          <div className=' w-72 h-[300px] rounded overflow-hidden shadow-lg mt-4 hover:shadow-redorange'>
+            <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'} md:mt-4 hover:shadow-redorange`}>
              
              <div className=' relative flex z-10'>
                 <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
@@ -48,6 +54,7 @@ const RecipeList = (props) => {
       ))}
       
     </div>
+    </>
   );
 };
 

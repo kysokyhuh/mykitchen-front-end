@@ -74,7 +74,7 @@ const App = () => {
         <NavBar user={user} handleSignout={handleSignout} />
 
         {user && (
-            <div className=" flex justify-center items-center flex-col min-w-[400px] w-full">
+          <div className=" flex justify-center items-center flex-col min-w-[400px] w-full">
               <div className="w-[450px]">
                   <SearchBar setSearchResults={setSearchResults}/>
                   <SearchResults searchResults={searchResults} setSearchResults={setSearchResults} />

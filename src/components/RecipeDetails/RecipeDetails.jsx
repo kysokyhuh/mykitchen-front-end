@@ -35,6 +35,7 @@ const RecipeDetails = (props) => {
         navigate(`/recipes/${recipeId}`)
     }
 
+        
     useEffect(() => {
         const fetchRecipe = async () => {
             const recipeData = await recipeService.show(recipeId)
@@ -96,7 +97,7 @@ const RecipeDetails = (props) => {
             ))}
             </div>
 
-            <div className=' md:w-[600px] mx-auto'>
+            <div className=' md:w-[600px] mx-auto mt-2'>
                 <div className='flex justify-center font-literata italic font-bold text-redorange'>
                     <IoBookOutline className=' mr-2 mt-1' size={20}/> 
                     <p className=' text-xl md:text-2xl'>INSTRUCTIONS</p>
@@ -175,7 +176,7 @@ const RecipeDetails = (props) => {
 
             ))}
 
-            
+
             <CommentForm handleAddComment={handleAddComment}/>
 
         </div>

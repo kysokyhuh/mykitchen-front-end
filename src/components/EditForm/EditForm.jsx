@@ -3,9 +3,12 @@ import { useParams } from 'react-router-dom';
 import * as recipeService from '../../services/recipeService';
 import { useNavigate } from 'react-router-dom';
 
-const CommentForm = (props) => {
+const EditForm = (props) => {
+  const { recipeId, commentId } = useParams();
   const [formData, setFormData] = useState({ text: '' });
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -14,26 +17,28 @@ const CommentForm = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    props.handleAddComment(formData);
+    recipeService.updateComment(recipeId, commentId, formData);
+    navigate(`/recipes/${recipeId}`);
 
     setFormData({ text: '' });
     setIsOpen(false); // Close the modal on submit
   };
 
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const recipeData = await recipeService.show(recipeId);
+      setFormData(recipeData.comments.find((comment) => comment._id === commentId));
+    };
+    if (recipeId && commentId) fetchRecipe();
+  }, [recipeId, commentId]);
+
   return (
     <>
-        <button
-          onClick={() => setIsOpen(true)}
-          className='bg-sage text-white rounded px-2 mt-2 mb-4 text-lg hover:bg-white
-          hover:text-darksage hover:border-2 hover:border-darksage'>
-          Add Comment
-        </button>
-   
       
-      {isOpen &&  (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
+        <div className='fixed inset-0 bg-cream flex justify-center items-center'>
           <div className='bg-white p-6 rounded-lg w-1/2'>
-            <button onClick={() => setIsOpen(false)} className='ml-auto text-gray-700'>
+            
+            <button onClick={() => navigate(`/recipes/${recipeId}`)} className='ml-auto text-gray-700'>
               &times;
             </button>
 
@@ -60,10 +65,10 @@ const CommentForm = (props) => {
             </form>
           </div>
         </div>
-      )}
+      
     </>
   );
 };
 
-export default CommentForm;
+export default EditForm;
 

@@ -14,6 +14,7 @@ import UserRecipeDetails from './components/UserRecipeDetails/UserRecipeDetails'
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from  './components/SearchResults/SearchResults';
 import SavedRecipes from './components/SavedRecipes/SavedRecipes';
+import EditForm from './components/EditForm/EditForm';
 
 export const AuthedUserContext = createContext(null);
 
@@ -100,7 +101,7 @@ const App = () => {
 
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
-              <Route path="/recipes/:recipeId/comments/:commentId/edit" element={<CommentForm />} />
+              <Route path="/recipes/:recipeId/comments/:commentId/edit" element={<EditForm />} />
               <Route path="/recipes/user/:userId/favorites" element={<SavedRecipes handleSaveRecipe={handleSaveRecipe}/>}  />
             </>
 

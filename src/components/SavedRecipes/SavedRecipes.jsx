@@ -3,7 +3,11 @@ import * as recipeService from '/src/services/recipeService';
 import { AuthedUserContext } from '../../App';
 import { useContext, useEffect, useState } from 'react';
 import { useParams, Link} from 'react-router-dom';
-
+import { BsBookmarkHeart } from "react-icons/bs";
+import { BsBookmarkHeartFill } from "react-icons/bs";
+import { CiClock2 } from "react-icons/ci";
+import { PiCookingPotLight } from "react-icons/pi";
+import Greeting from '../Greeting/Greeting';
 
 
 const SavedRecipes = () => {
@@ -23,17 +27,47 @@ const SavedRecipes = () => {
     console.log('saved', savedRecipes)
   return (
     <div>
-        {savedRecipes.map((recipe) => (
-            <div key={recipe._id}>
+    <Greeting user={user} />
 
-               <Link to={`/recipes/${recipe._id}`}>
-                    <img className=' w-64 h-44' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
-                    <h2>{recipe.name}</h2>
-                </Link>
 
-            </div>
-        ))}
+<div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
+                 gap-8'>
+    {savedRecipes.map((recipe, idx) => (
+        <div key={idx}>
+     
+        <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'}  mb-6 md:mt-4 hover:shadow-redorange`}>
+          
+         <div className=' relative flex z-10'>
+            <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
+           
+         </div>
+         
+        <Link to={`/recipes/${recipe._id}`}>
+            <h2 className=' text-lg text-center mb-0'>{recipe.name}</h2>
+            <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.firstname}</p>
+
+        <div className="px-8 pt-4 pb-2 flex">
+    
+          <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+            <CiClock2 className=' mr-2' size={20}/> {recipe.preptime}
+            </span>
+          <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
+            <PiCookingPotLight className=' mr-2' size={20}/> {recipe.cooktime}
+            </span>
+          
+        </div>
+        </Link>
+
+        </div>
+        
+    
     </div>
+
+  ))}
+  
+</div>
+    
+</div>
   )
 }
 

@@ -162,8 +162,9 @@ const RecipeDetails = (props) => {
                         {comment.author._id === user._id && (
                             <>
                                 <div className=' flex gap-4 text-xs mt-3 mb-2 font-semibold text-gray-400'>
-                                    <Link className='hover:text-darksage' to={`/recipes/${recipeId}/comments/${comment._id}/edit`} >Edit</Link>
+                                     <Link className='hover:text-darksage' to={`/recipes/${recipeId}/comments/${comment._id}/edit`} >Edit</Link>
                                     <button className='hover:text-redorange' onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+
                                 </div>
                             </>
                         )}

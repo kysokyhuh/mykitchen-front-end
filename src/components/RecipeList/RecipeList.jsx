@@ -25,7 +25,7 @@ const RecipeList = (props) => {
       {props.recipes.map((recipe, idx) => (
         <div key={idx}>
          
-            <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'} md:mt-4 hover:shadow-redorange`}>
+            <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'} mb-6 md:mt-4 hover:shadow-redorange`}>
               
              <div className=' relative flex z-10'>
                 <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />

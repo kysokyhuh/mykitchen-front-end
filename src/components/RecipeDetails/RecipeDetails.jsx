@@ -61,7 +61,7 @@ const RecipeDetails = (props) => {
             <div className=' font-literata mt-8'>
                 <p className=' text-4xl'>{recipe.name}</p>
                 <p>
-                    posted by <span className=' font-bold'>{recipe.author.firstname} </span> 
+                    posted by <span className=' font-bold'>{recipe.author.firstname} {recipe.author.lastname}</span> 
                 </p>
             </div>
 
@@ -89,7 +89,7 @@ const RecipeDetails = (props) => {
                         {item.name}
                     </span>
 
-                    <span className=" bg-sage rounded-full px-3 py-1 text-cream mb-2">
+                    <span className=" bg-sage rounded-full px-3 py-1 text-black mb-2">
                         {item.measurement}
                     </span>
                 </div>

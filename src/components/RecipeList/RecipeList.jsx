@@ -13,7 +13,6 @@ import Greeting from '../Greeting/Greeting';
 const RecipeList = (props) => {
   const user = useContext(AuthedUserContext);
 
-
   return (
 
     <>

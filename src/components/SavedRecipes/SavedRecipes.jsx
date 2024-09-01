@@ -1,16 +1,14 @@
-import React from 'react'
 import * as recipeService from '/src/services/recipeService'; 
 import { AuthedUserContext } from '../../App';
 import { useContext, useEffect, useState } from 'react';
 import { useParams, Link} from 'react-router-dom';
-import { BsBookmarkHeart } from "react-icons/bs";
-import { BsBookmarkHeartFill } from "react-icons/bs";
 import { CiClock2 } from "react-icons/ci";
 import { PiCookingPotLight } from "react-icons/pi";
+import { BsBookmarkHeartFill } from "react-icons/bs";
 import Greeting from '../Greeting/Greeting';
 
 
-const SavedRecipes = () => {
+const SavedRecipes = (props) => {
     const { userId } = useParams()
     const [savedRecipes, setSavedRecipes] = useState([])
     const user = useContext(AuthedUserContext);
@@ -39,7 +37,9 @@ const SavedRecipes = () => {
           
          <div className=' relative flex z-10'>
             <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
-           
+            <div className=' absolute top-3 right-5 p-1 bg-white rounded-md shadow-lg' onClick={() => props.handleSaveRecipe(user._id, recipe._id)}>
+                  <BsBookmarkHeartFill size={20}  className={`cursor-pointer hover:fill-black ${ recipe.savedBy.includes(user._id) ? 'fill-red-400' : 'fill-black'}`} />
+            </div>
          </div>
          
         <Link to={`/recipes/${recipe._id}`}>
@@ -49,10 +49,10 @@ const SavedRecipes = () => {
     
           <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
             <CiClock2 className=' mr-2' size={20}/> {recipe.preptime}
-            </span>
+          </span>
           <span className=" bg-cream rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-2 flex">
             <PiCookingPotLight className=' mr-2' size={20}/> {recipe.cooktime}
-            </span>
+          </span>
           
         </div>
         </Link>

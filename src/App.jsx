@@ -101,7 +101,7 @@ const App = () => {
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
               <Route path="/recipes/:recipeId/comments/:commentId/edit" element={<CommentForm />} />
-              <Route path="/recipes/user/:userId/favorites" element={<SavedRecipes />}  />
+              <Route path="/recipes/user/:userId/favorites" element={<SavedRecipes handleSaveRecipe={handleSaveRecipe}/>}  />
             </>
 
           ) : ( 

@@ -39,8 +39,9 @@ const CommentForm = (props) => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="text-input">Your comment:</label>
+
+    <form className=' flex flex-col justify-center items-center mb-12 mt-9' onSubmit={handleSubmit}>
+      <label className=' text-lg mr-auto italic font-literata' htmlFor="text-input">Your comment:</label>
       <textarea
         cols="50"
         rows="2"
@@ -49,9 +50,12 @@ const CommentForm = (props) => {
         id="text-input"
         value={formData.text}
         onChange={handleChange}
+        className=' border-2 rounded-lg'
         required
+
       />
-      <button type="submit">SUBMIT COMMENT</button>
+      <button className=' bg-sage text-white rounded px-2 mt-2 ml-auto text-lg
+                  hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage' type="submit">SUBMIT</button>
     </form>
   );
 };

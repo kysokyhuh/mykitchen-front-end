@@ -57,14 +57,13 @@ const CommentFormModal = (props) => {
                 Your comment:
               </label>
               <textarea
-                cols="50"
                 rows="2"
                 type="text"
                 name="text"
                 id="text-input"
                 value={formData.text}
                 onChange={handleChange}
-                className='border-2 rounded-lg'
+                className='border-2 rounded-lg md:w-96'
                 required
               />
               <button

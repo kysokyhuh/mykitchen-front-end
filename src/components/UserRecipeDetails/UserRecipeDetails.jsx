@@ -31,7 +31,7 @@ const UserRecipeDetails = () => {
         <Greeting user={user} />
 
 
-    <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
+    <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center font-albert font-semibold
                      gap-8'>
         {recipes.map((recipe, idx) => (
             <div key={idx}>
@@ -44,8 +44,7 @@ const UserRecipeDetails = () => {
              </div>
              
             <Link to={`/recipes/${recipe._id}`}>
-                <h2 className=' text-lg text-center mb-0'>{recipe.name}</h2>
-                <p className=' text-sm text-center text-gray-700 mt-0'>by {recipe.author.firstname}</p>
+                <h2 className=' font-literata text-lg text-center mb-0 mt-3'>{recipe.name}</h2>
 
             <div className="px-8 pt-4 pb-2 flex">
         

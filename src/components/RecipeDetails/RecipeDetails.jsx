@@ -169,10 +169,13 @@ const RecipeDetails = (props) => {
                             </>
                         )}
                     </div>
+
+
                 </div>
 
-
             ))}
+
+            
             <CommentForm handleAddComment={handleAddComment}/>
 
         </div>

@@ -1,14 +1,22 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-
+import { useParams } from 'react-router-dom';
 const Greeting = (props) => {
 
+  const { recipeId } = useParams()
   let greeting;
   if (location.pathname === '/'){
     greeting = (
       <>
         <p className=' text-redorange'>Hey {props.user.username}!</p>
         <p className=' text-lg md:text-2xl '>What are you craving for today?</p> 
+      </>
+    )
+  } else if (recipeId){
+    greeting = (
+      <>
+        <p className=' text-redorange'>Hey {props.user.username}!</p>
+        <p className=' text-lg md:text-2xl '>Ready to cook something good?</p> 
       </>
     )
   } else if (location.pathname === '/recipes/new' ){

@@ -18,6 +18,7 @@ const NavBar = ({ handleSignout }) => {
     setNav(savedNavState);
   }, []);
 
+  
   const handleNav = () => {
     const newNavState = !nav;
     setNav(newNavState);

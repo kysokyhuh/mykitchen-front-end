@@ -25,6 +25,7 @@ const SearchBar = ({ setSearchResults }) => {
         if(value.trim() === '') {
             setSearchResults([]);
         } else { 
+
             const results = recipes.filter(recipe => {
                 return recipe && recipe.name && recipe.name.toLowerCase().includes(value) && recipe.isPublic === true
             })

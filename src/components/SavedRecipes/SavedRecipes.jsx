@@ -37,6 +37,8 @@ const SavedRecipes = (props) => {
           
          <div className=' relative flex z-10'>
             <img className=' w-64 h-44 rounded-lg object-cover ml-4 mt-2' src={recipe.imageUrl} alt={`${recipe.name}Img`} />
+            
+            {/* if the save icon is clicked, it will remove item from db and will refresh the page to remove recipe on screen */}
             <div className=' absolute top-3 right-5 p-1 bg-white rounded-md shadow-lg' onClick={() => props.handleSaveRecipe(user._id, recipe._id) && window.location.reload()}>
                   <BsBookmarkHeartFill size={20} className={`cursor-pointer hover:fill-black ${ recipe.savedBy.includes(user._id) ? 'fill-red-400' : 'fill-black'}`}/>
             </div>

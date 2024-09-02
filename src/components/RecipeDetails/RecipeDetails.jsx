@@ -27,6 +27,7 @@ const RecipeDetails = (props) => {
 
     const handleDeleteComment = async (commentId) => {
         await recipeService.deleteComment(recipeId, commentId)
+        
         setRecipe({
           ...recipe,
           comments: recipe.comments.filter((comment) => comment._id !== commentId),

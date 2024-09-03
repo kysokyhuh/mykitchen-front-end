@@ -41,6 +41,7 @@ Backend: https://github.com/gabvint/recipe-api-back-end
  Project planning in trello: https://trello.com/invite/b/66c6838c7234a2281b8c499b/ATTIf8ccdf1f343058c4de3f81d48996ff6f20C42EA2/kusina-ku-my-kitchen
 
 Link to the website:
+https://kusinaku-app.netlify.app/
 
 
 ## 👩🏻‍🍳 FUTURE PLANS

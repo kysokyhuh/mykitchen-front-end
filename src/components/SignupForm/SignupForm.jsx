@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
+import designImg from '/designImg.svg';
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const SignupForm = (props) => {
     <div className='flex bg-cream min-h-screen justify-center items-center font-albert '>
      
 
-     <img className=' absolute z-10 mt-32 md:mt-24 md:w-[700px]' src="../public/designImg.svg" alt="designImg" />
+     <img className=' absolute z-10 mt-32 md:mt-24 md:w-[700px]' src={designImg} alt="designImg" />
 
      <div className=' bg-white rounded-xl px-6 pt-10 pb-10 mt-24 w-72 z-20 shadow-lg'>
         <p>{message}</p>

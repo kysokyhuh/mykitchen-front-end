@@ -1,3 +1,5 @@
+import homeImg from '/Home.svg'
+
 const Landing = () => {
 
   // place content for homepage design
@@ -11,7 +13,7 @@ const Landing = () => {
 
   
         <img 
-          src="../public/Home.svg" 
+          src={homeImg}
           alt="homebg" 
           className="w-full object-fill h-auto z-10"
         />

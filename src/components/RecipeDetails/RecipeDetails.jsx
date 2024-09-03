@@ -156,7 +156,7 @@ const RecipeDetails = (props) => {
 
             {recipe.comments.map((comment) => (
                 <div key={comment._id}>
-                    <div className=' px-4 bg-white border-2 mt-3 w-96 md:w-[800px] h-auto rounded-lg'>
+                    <div className=' px-4 bg-white border-2 mt-2 w-96 md:w-[800px] h-auto rounded-lg py-2'>
                         <div className=' flex justify-between'>
                             <div className=' text-xl font-semibold mt-2'>
                                 {comment.author.username} 

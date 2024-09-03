@@ -35,8 +35,8 @@ const SigninForm = (props) => {
     <div className='flex bg-cream min-h-screen justify-center items-center font-albert '>
   
     <img className=' absolute z-10 mt-32 md:mt-24 md:w-[700px]' src="../public/designImg.svg" alt="designImg" />
-    
-      <div className=' bg-white rounded-xl px-6 pt-10 pb-10 mt-24 w-64 z-20 shadow-lg'>
+
+      <div className=' bg-white rounded-xl px-6 pt-10 pb-10 mt-24 w-72 z-20 shadow-lg'>
           <p>{message}</p>
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <div>

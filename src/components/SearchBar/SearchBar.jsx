@@ -36,8 +36,8 @@ const SearchBar = ({ setSearchResults }) => {
 
 
   return (
-    <div className=' bg-white md:w-[900px] w-[410px] rounded-lg md:h-16 h-12
-        p-4 shadow-lg flex items-center border-2 border-cream absolute md:top-24 top-40'>
+    <div className=' bg-white w-[370px] ml-8 md:w-[900px]  rounded-lg md:h-16 h-12
+        p-4 shadow-lg flex items-center border-2 border-cream absolute md:top-24 top-40 '>
         <FaSearch className=' text-darksage cursor-pointer'/>
       
       <input

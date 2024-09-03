@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const SearchResults = ({ searchResults, setSearchResult }) => {
   return (
-    <div className='text-albert absolute w-[410px] md:w-[900px]  bg-sage flex flex-col shadow-lg
+    <div className='text-albert absolute w-[370px] ml-8 md:w-[900px] bg-sage flex flex-col shadow-lg
         rounded-lg mt-52 md:mt-40 max-h-[300px] overflow-y-scroll px-3 z-50'>
       {searchResults.map((result, idx) => (
           

@@ -24,9 +24,12 @@ const CommentForm = (props) => {
     <>
         <button
           onClick={() => setIsOpen(true)}
-          className='bg-sage text-white rounded px-2 mt-2 mb-4 text-lg hover:bg-white
-          hover:text-darksage hover:border-2 hover:border-darksage'>
-          Add Comment
+          className='relative rounded-full px-5 py-1  overflow-hidden group bg-sage text-white hover:bg-gradient-to-r hover:from-sage
+                   hover:to-darksage hover:ring-2 hover:ring-offset-2 hover:ring-darksage transition-all ease-out duration-300 
+                   mb-7 mt-6'>
+           <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+           <span className='relative'>Add Comment</span>
         </button>
    
       
@@ -52,10 +55,12 @@ const CommentForm = (props) => {
                 required
               />
               <button
-                className='bg-sage text-white rounded px-2 mt-2 ml-auto text-lg hover:bg-white
-                 hover:text-darksage hover:border-2 hover:border-darksage'
+                className='relative rounded-full px-5 py-1  overflow-hidden group bg-sage text-white hover:bg-gradient-to-r hover:from-sage
+                   hover:to-darksage hover:ring-2 hover:ring-offset-2 hover:ring-darksage transition-all ease-out duration-300 mt-7 ml-auto'
                 type="submit">
-                SUBMIT
+                <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                <span>SUBMIT</span>
               </button>
             </form>
           </div>

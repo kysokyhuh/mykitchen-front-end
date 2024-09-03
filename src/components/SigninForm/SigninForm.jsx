@@ -32,42 +32,48 @@ const SigninForm = (props) => {
   };
 
   return (
-    <main className='mt-24'>
+    <div className='flex bg-cream min-h-screen justify-center items-center font-albert '>
+  
+    <img className=' absolute z-10 mt-32 md:mt-24 md:w-[700px]' src="../public/designImg.svg" alt="designImg" />
     
-        <h1>Log In</h1>
-        <p>{message}</p>
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Username:</label>
-            <input
-              type="text"
-              autoComplete="off"
-              id="username"
-              value={formData.username}
-              name="username"
-              onChange={handleChange}
-            />
+      <div className=' bg-white rounded-xl px-6 pt-10 pb-10 mt-24 w-64 z-20 shadow-lg'>
+          <p>{message}</p>
+            <form autoComplete="off" onSubmit={handleSubmit}>
+                <div>
+                  <label className=' mb-3 font-semibold text-lg' htmlFor="email">Username:</label>
+                  <input
+                    className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+                    type="text"
+                    autoComplete="off"
+                    id="username"
+                    value={formData.username}
+                    name="username"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label className=' mb-3 font-semibold text-lg' htmlFor="password">Password:</label>
+                  <input
+                    className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+                    type="password"
+                    autoComplete="off"
+                    id="password"
+                    value={formData.password}
+                    name="password"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className=' flex justify-between mt-3'>
+                  <button className=' bg-sage px-2 rounded-xl hover:bg-white 
+                  hover:border hover:border-sage hover:text-darksage'>Log In</button>
+                  <Link to="/">
+                  <button className=' bg-redorange px-2 rounded-xl hover:bg-white 
+                  hover:border hover:border-redorange hover:text-redorange'>Cancel</button>
+                  </Link>
+                </div>
+            </form>
           </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              autoComplete="off"
-              id="password"
-              value={formData.password}
-              name="password"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <button>Log In</button>
-            <Link to="/">
-              <button>Cancel</button>
-            </Link>
-          </div>
-        </form>
-     
-    </main>
+      </div>
   );
 };
 

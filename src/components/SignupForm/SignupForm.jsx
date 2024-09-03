@@ -40,77 +40,91 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main>
-      <h1>Sign Up</h1>
-      <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='flex bg-cream min-h-screen justify-center items-center font-albert '>
+     
 
-          <label htmlFor="firstname">Firstname:</label>
-          <input
-            type="text"
-            id="firstname"
-            value={firstname}
-            name="firstname"
-            onChange={handleChange}
-          />
+     <img className=' absolute z-10 mt-32 md:mt-24 md:w-[700px]' src="../public/designImg.svg" alt="designImg" />
+
+     <div className=' bg-white rounded-xl px-6 pt-10 pb-10 mt-24 w-64 z-20 shadow-lg'>
+        <p>{message}</p>
+        <form onSubmit={handleSubmit}>
+          <div>
+
+            <label className=' mb-3 font-semibold text-lg' htmlFor="firstname">Firstname:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="text"
+              id="firstname"
+              value={firstname}
+              name="firstname"
+              onChange={handleChange}
+            />
 
 
-          <label htmlFor="lastname">Lastname:</label>
-          <input
-            type="text"
-            id="lastname"
-            value={lastname}
-            name="lastname"
-            onChange={handleChange}
-          />
+            <label className=' mb-3 font-semibold text-lg' htmlFor="lastname">Lastname:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="text"
+              id="lastname"
+              value={lastname}
+              name="lastname"
+              onChange={handleChange}
+            />
 
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            name="email"
-            onChange={handleChange}
-          />
+            <label className=' mb-3 font-semibold text-lg' htmlFor="email">Email:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="text"
+              id="email"
+              value={email}
+              name="email"
+              onChange={handleChange}
+            />
 
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            name="username"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            name="password"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="confirm">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
-        </div>
-      </form>
-    </main>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="username">Username:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="text"
+              id="username"
+              value={username}
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="password">Password:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="password"
+              id="password"
+              value={password}
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="confirm">Confirm Password:</label>
+            <input
+             className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
+              type="password"
+              id="confirm"
+              value={passwordConf}
+              name="passwordConf"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className=' flex justify-between mt-3'>
+            <button disabled={isFormInvalid()} className=' bg-sage px-2 rounded-xl hover:bg-white 
+                  hover:border hover:border-sage hover:text-darksage'>Sign Up</button>
+            <Link to="/">
+              <button className=' bg-redorange px-2 rounded-xl hover:bg-white 
+                  hover:border hover:border-redorange hover:text-redorange'>Cancel</button>
+            </Link>
+          </div>
+        </form>
+     </div>
+    </div>
   );
 };
 

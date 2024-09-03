@@ -118,16 +118,23 @@ const RecipeDetails = (props) => {
             {/* checks for authorization */}
             {recipe.author._id === user._id && (
                 <>
-                    <div className=' flex gap-4 justify-center items-center text-lg mt-8 '>
-                        <div className='bg-darksage rounded px-3 py-1 text-cream mb-2 mr-2
-                                 hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage'>
-                            <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>
-                        </div>
-                        <div className=' bg-redorange rounded px-3 py-1 text-cream mb-2 mr-2
-                                hover:bg-white hover:text-redorange hover:border-2 hover:border-redorange'>
-                            <button onClick={() => props.handleDeleteRecipe(recipeId)}>Delete</button>
-                        </div>
+                    <div className='flex gap-4 justify-center items-center text-lg mt-8'>
+                    <div className='relative rounded-full px-5 py-1 overflow-hidden group bg-darksage text-cream mb-2 mr-2
+                     hover:bg-gradient-to-r hover:from-darksage hover:to-sage hover:ring-2 hover:ring-offset-2
+                      hover:ring-darksage transition-all ease-out duration-300'>
+                        <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform 
+                        translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                        <Link to={`/recipes/${recipeId}/edit`} className='relative'>Edit</Link>
                     </div>
+                    <div className='relative rounded-full px-5 py-1 overflow-hidden group bg-redorange 
+                    text-cream mb-2 mr-2 hover:bg-gradient-to-r hover:from-redorange hover:to-red-400 
+                    hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300'>
+                        <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform
+                         translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                        <button onClick={() => props.handleDeleteRecipe(recipeId)} className='relative'>Delete</button>
+                    </div>
+                    </div>
+
                 </>
             )}
 

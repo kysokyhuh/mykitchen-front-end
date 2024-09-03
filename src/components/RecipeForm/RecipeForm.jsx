@@ -243,9 +243,13 @@ const RecipeForm = (props) => {
                 />
               </div>
   
-              <button type="submit" className='bg-darksage text-white rounded p-2 mt-4 
-              hover:bg-white hover:text-darksage hover:border-2 hover:border-darksage'>
-                SUBMIT
+              <button
+                className='relative font-bold rounded-xl px-14 py-2  overflow-hidden group bg-sage text-white hover:bg-gradient-to-r hover:from-sage
+                   hover:to-darksage hover:ring-2 hover:ring-offset-2 hover:ring-darksage transition-all ease-out duration-300 mt-2 mx-auto'
+                type="submit">
+                <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                <span>SUBMIT</span>
               </button>
             </form>
           </div>

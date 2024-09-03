@@ -64,14 +64,23 @@ const SigninForm = (props) => {
                     onChange={handleChange}
                   />
                 </div>
-                <div className=' flex justify-between mt-3'>
-                  <button className=' bg-sage px-2 rounded-xl hover:bg-white 
-                  hover:border hover:border-sage hover:text-darksage'>Log In</button>
+                <div className='flex justify-between mt-3'>
+                  <button className='relative rounded-full px-5 py-1  overflow-hidden group bg-sage text-white hover:bg-gradient-to-r hover:from-sage
+                   hover:to-darksage hover:ring-2 hover:ring-offset-2 hover:ring-darksage transition-all ease-out duration-300'>
+                    <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                    opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                    <span className='relative'>Log In</span>
+                  </button>
                   <Link to="/">
-                  <button className=' bg-redorange px-2 rounded-xl hover:bg-white 
-                  hover:border hover:border-redorange hover:text-redorange'>Cancel</button>
+                    <button className='relative rounded-full px-5 py-1 overflow-hidden group bg-redorange text-white hover:bg-gradient-to-r hover:from-redorange
+                     hover:to-red-400 hover:ring-2 hover:ring-offset-2 hover:ring-redorange transition-all ease-out duration-300'>
+                      <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white 
+                      opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
+                      <span className='relative'>Cancel</span>
+                    </button>
                   </Link>
                 </div>
+
             </form>
           </div>
       </div>

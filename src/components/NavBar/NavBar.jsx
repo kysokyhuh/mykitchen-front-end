@@ -12,7 +12,7 @@ const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
 
   useEffect(() => {
-    const savedNavState = localStorage.getItem('navbarState') === 'false';
+    const savedNavState = localStorage.getItem('navbarState') === 'true';
     setNav(savedNavState);
   }, []);
 
@@ -43,9 +43,9 @@ const NavBar = ({ handleSignout }) => {
             <FaSignOutAlt size={20} className='mt-1 ml-2' />
           </div>
           <div onClick={handleNav} className='block md:hidden ml-auto'>
-            {!nav ? <IoIosClose size={30} /> : <RxHamburgerMenu size={30} />}
+            {!nav ? <RxHamburgerMenu size={30} /> : <IoIosClose size={30} />}
           </div>
-          <div className={!nav ? 'fixed z-50 left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500' : 'fixed left-[-100%]'}>
+          <div className={`fixed z-50 left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500 ${nav ? 'translate-x-0' : 'translate-x-[-100%]'}`}>
             <ul onClick={handleNav} className='pt-24 uppercase'>
               <li className='p-4 hover:text-darksage'><Link to="/">RECIPES</Link></li>
               <li className='p-4 hover:text-darksage'><Link to="/recipes/new">ADD RECIPE</Link></li>
@@ -66,9 +66,9 @@ const NavBar = ({ handleSignout }) => {
             <li className='p-4 hover:text-darksage'><Link to="/signup">SIGN UP</Link></li>
           </ul>
           <div onClick={handleNav} className='block md:hidden'>
-            {!nav ? <IoIosClose size={30} /> : <RxHamburgerMenu size={20} />}
+            {!nav ? <RxHamburgerMenu size={30} /> : <IoIosClose size={30} />}
           </div>
-          <div className={!nav ? 'fixed z-50 left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500' : 'fixed left-[-100%]'}>
+          <div className={`fixed z-50 left-0 top-0 w-[60%] h-full bg-sage ease-in-out duration-500 ${nav ? 'translate-x-0' : 'translate-x-[-100%]'}`}>
             <ul onClick={handleNav} className='pt-24 uppercase'>
               <li className='p-4'><Link to="/signin">Sign In</Link></li>
               <li className='p-4'><Link to="/signup">Sign Up</Link></li>

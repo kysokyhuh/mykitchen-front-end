@@ -12,7 +12,7 @@ const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
 
   useEffect(() => {
-    const savedNavState = localStorage.getItem('navbarState') === 'true';
+    const savedNavState = localStorage.getItem('navbarState') === 'false';
     setNav(savedNavState);
   }, []);
 

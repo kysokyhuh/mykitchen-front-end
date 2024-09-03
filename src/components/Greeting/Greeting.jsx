@@ -23,7 +23,7 @@ const Greeting = (props) => {
     greeting = (
       <>
         <p className=' text-redorange'>Hey {props.user.username}!</p>
-        <p className=' text-lg md:text-2xl '>Ready to share your culinary masterpiece?</p> 
+        <p className=' text-lg md:text-xl '>Ready to share your culinary masterpiece?</p> 
       </>
     )
   } else if (location.pathname.endsWith('/favorites')){
@@ -37,14 +37,14 @@ const Greeting = (props) => {
     greeting = (
       <>
         <p className=' text-redorange'>Hey {props.user.username}!</p>
-        <p className=' text-lg md:text-2xl '>Look at the delicious recipes you've shared!</p> 
+        <p className=' text-lg md:text-xl '>Look at the delicious recipes you've shared!</p> 
       </>
     )
   }
 
 
   return (
-    <div className=' ml-10 mb-9 mt-8 font-literata italic md:text-4xl text-2xl font-semibold'>
+    <div className=' ml-10 mb-9 mt-24 font-literata italic md:text-4xl text-2xl font-semibold'>
        {greeting}
     </div>
   )

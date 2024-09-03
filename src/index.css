@@ -6,4 +6,5 @@
 
 body {
     background-color: #FFFFFF;
+    z-index: 0;
 }

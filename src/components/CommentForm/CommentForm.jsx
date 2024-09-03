@@ -35,7 +35,7 @@ const CommentForm = (props) => {
       
       {isOpen &&  (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
-          <div className='bg-white p-6 rounded-lg w-1/2'>
+          <div className='bg-white p-6 rounded-lg w-2/3 md:w-1/2 h-64'>
             <button onClick={() => setIsOpen(false)} className='ml-auto text-gray-700'>
               &times;
             </button>

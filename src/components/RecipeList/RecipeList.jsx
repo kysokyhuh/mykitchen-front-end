@@ -12,6 +12,12 @@ import Greeting from '../Greeting/Greeting';
 
 const RecipeList = (props) => {
   const user = useContext(AuthedUserContext);
+  const [recipes, setRecipes] = useState([])
+
+  // added this to make sure that only public recipes are posted 
+  useEffect(() => {
+    setRecipes(props.recipes.filter(recipe => recipe.isPublic === true));
+  }, [props.recipes])
 
   return (
 
@@ -21,7 +27,7 @@ const RecipeList = (props) => {
 
     <div className='grid lg:grid-cols-4 md:grid-cols-3 justify-items-center  font-albert font-semibold
                      gap-8'>
-      {props.recipes.map((recipe, idx) => (
+      {recipes.map((recipe, idx) => (
         <div key={idx}>
          
             <div className={`w-72 h-[300px] rounded overflow-hidden shadow-lg ${idx === 0 ? 'mt-20' : 'mt-4'} mb-6 md:mt-4 hover:shadow-redorange`}>

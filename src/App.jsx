@@ -98,8 +98,7 @@ const App = () => {
 
               <Route path="/recipes/:recipeId" 
               element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
-              <Route path="/recipes/user/:userId" element={<UserRecipeDetails />} />
-
+              <Route path="/recipes/user/:userId" element={<UserRecipeDetails />} />c
               <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
               <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
               <Route path="/recipes/:recipeId/comments/:commentId/edit" element={<EditForm />} />
@@ -112,6 +111,7 @@ const App = () => {
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />
           <Route path="/signin" element={<SigninForm setUser={setUser} />} />
         </Routes>
+        
       </AuthedUserContext.Provider>
     </>
   );

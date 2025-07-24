@@ -118,7 +118,7 @@ const SignupForm = (props) => {
 
           {/* Security Question 1 */}
           <div>
-            <label className=' mb-3 font-semibold text-lg' htmlFor="securityQuestion1">Security Question 1:</label>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="securityQuestion1">Question 1:</label>
             <select
               className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
               id="securityQuestion1"
@@ -146,7 +146,7 @@ const SignupForm = (props) => {
 
           {/* Security Question 2 */}
           <div>
-            <label className=' mb-3 font-semibold text-lg' htmlFor="securityQuestion2">Security Question 2:</label>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="securityQuestion2">Question 2:</label>
             <select
               className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
               id="securityQuestion2"
@@ -161,7 +161,9 @@ const SignupForm = (props) => {
             </select>
           </div>
           <div>
+
             <label className=' mb-3 font-semibold text-lg' htmlFor="securityAnswer2">Answer: thugvg</label>
+
             <input
               className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
               type="text"
@@ -189,4 +191,5 @@ const SignupForm = (props) => {
     </div>
   );
 };
+// hello po 
 export default SignupForm;

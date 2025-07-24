@@ -59,6 +59,16 @@ const Greeting = (props) => {
         />
       </>
     )
+  } else if (location.pathname.endsWith('/change-password')) {
+     greeting = (
+      <>
+        <p className=' text-redorange'>Hey {props.user.username}!</p>
+        <TypeAnimation 
+          sequence={["Change password"]}
+          className='text-base md:text-xl'
+        />
+      </>
+    )
   }
 
   return (

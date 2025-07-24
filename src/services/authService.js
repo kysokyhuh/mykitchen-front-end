@@ -47,8 +47,49 @@ const signin = async (user) => {
   }
 };
 
+const changepassword = async (formData, userId) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/${userId}/change-password`, {
+      method: 'POST',
+       headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+              },
+      body: JSON.stringify(formData),
+    });
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error);
+    }
+    localStorage.removeItem('token');
+    return json;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+
+
+const getSecurityQuestions = async (username) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/${username}/security-questions`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error);
+    }
+
+    return json;  
+  } catch (err) {
+    console.error(err);
+    throw new Error('Failed to fetch security questions.');
+  }
+};
 const signout = () => {
   localStorage.removeItem('token');
 };
 
-export { signup, signin, getUser, signout };
+export { signup, signin, getUser, signout, changepassword, getSecurityQuestions };

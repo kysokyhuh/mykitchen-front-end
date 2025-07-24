@@ -161,7 +161,7 @@ const SignupForm = (props) => {
             </select>
           </div>
           <div>
-            <label className=' mb-3 font-semibold text-lg' htmlFor="securityAnswer2">Answer:</label>
+            <label className=' mb-3 font-semibold text-lg' htmlFor="securityAnswer2">Answer: thugvg</label>
             <input
               className=' h-9 px-6 mt-1 mb-1 border border-sage rounded-lg'
               type="text"

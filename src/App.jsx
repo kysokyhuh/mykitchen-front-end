@@ -117,6 +117,8 @@ const App = () => {
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />
           <Route path="/signin" element={<SigninForm setUser={setUser} />} />
           <Route path="/userprofile" element={<UserProfile/>} />
+          <Route path="/adminprofile" element={<AdminProfile/>} />
+          <Route path="/moderatorprofile" element={<ModeratorProfile/>} />
         </Routes>
         
       </AuthedUserContext.Provider>

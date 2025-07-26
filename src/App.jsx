@@ -19,6 +19,7 @@ import ChangePasswordForm from './components/ChangePasswordForm/ChangePasswordFo
 import AdminProfile from './components/AdminProfile/AdminProfile';
 import ModeratorProfile from './components/ModeratorProfile/ModeratorProfile';
 import UserProfile from './components/UserProfile/UserProfile';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 export const AuthedUserContext = createContext(null);
 
@@ -116,9 +117,13 @@ const App = () => {
           
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />
           <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+          {/* temporarily here */}
           <Route path="/userprofile" element={<UserProfile/>} />
           <Route path="/adminprofile" element={<AdminProfile/>} />
           <Route path="/moderatorprofile" element={<ModeratorProfile/>} />
+
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
+
         </Routes>
         
       </AuthedUserContext.Provider>

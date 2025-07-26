@@ -131,9 +131,23 @@ const SignupForm = (props) => {
     }));
     if (!isSecurityInvalid()) {
       try {
-        const newUserResponse = await authService.signup(formData);
-        props.setUser(newUserResponse.user);
-        navigate("/");
+        await authService.signup(formData);
+        setMessage("Account successfully created! Redirecting to sign in...");
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          username: "",
+          password: "",
+          passwordConf: "",
+          securityQuestion1: "",
+          securityAnswer1: "",
+          securityQuestion2: "",
+          securityAnswer2: "",
+        });
+        setTimeout(() => {
+          navigate("/signin");
+        }, 2000); // 2 seconds before redirect
       } catch (err) {
         setMessage(err.message);
       }
@@ -141,6 +155,7 @@ const SignupForm = (props) => {
       setMessage("Please fix the highlighted security question fields.");
     }
   };
+
 
   return (
     <div className="flex bg-cream min-h-screen justify-center items-center font-albert">
@@ -254,7 +269,6 @@ const SignupForm = (props) => {
                       </button>
                     </div>
                   </div>
-
                   <div className="w-1/2">
                     <label className="mb-2 font-semibold text-lg" htmlFor="confirm">
                       Confirm Password:
@@ -320,6 +334,108 @@ const SignupForm = (props) => {
             ) : (
               <form onSubmit={handleSubmit}>
                 {/* Security Questions */}
+                <div className="mb-4">
+                  <label className="mb-2 font-semibold text-lg" htmlFor="securityQuestion1">
+                    Security Question 1:
+                  </label>
+                  <select
+                    className={`w-full h-12 px-4 mb-1 border rounded-lg ${
+                      errors.securityQuestion1 && "border-red-500"
+                    }`}
+                    id="securityQuestion1"
+                    name="securityQuestion1"
+                    value={formData.securityQuestion1}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a question</option>
+                    <option value="What was the name of your first pet?">
+                      What was the name of your first pet?
+                    </option>
+                    <option value="What is your mother’s maiden name?">
+                      What is your mother’s maiden name?
+                    </option>
+                    <option value="What is your favorite color?">
+                      What is your favorite color?
+                    </option>
+                  </select>
+                  {errors.securityQuestion1 && (
+                    <p className="text-xs text-red-500 mb-2">{errors.securityQuestion1}</p>
+                  )}
+                  <input
+                    className={`w-full h-12 px-4 mb-1 border rounded-lg ${
+                      errors.securityAnswer1 && "border-red-500"
+                    }`}
+                    type="text"
+                    id="securityAnswer1"
+                    placeholder="Answer"
+                    name="securityAnswer1"
+                    value={formData.securityAnswer1}
+                    onChange={handleChange}
+                  />
+                  {errors.securityAnswer1 && (
+                    <p className="text-xs text-red-500 mb-2">{errors.securityAnswer1}</p>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="mb-2 font-semibold text-lg" htmlFor="securityQuestion2">
+                    Security Question 2:
+                  </label>
+                  <select
+                    className={`w-full h-12 px-4 mb-1 border rounded-lg ${
+                      errors.securityQuestion2 && "border-red-500"
+                    }`}
+                    id="securityQuestion2"
+                    name="securityQuestion2"
+                    value={formData.securityQuestion2}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a question</option>
+                    <option value="What city were you born in?">
+                      What city were you born in?
+                    </option>
+                    <option value="What was the model of your first car?">
+                      What was the model of your first car?
+                    </option>
+                    <option value="What was your childhood nickname?">
+                      What was your childhood nickname?
+                    </option>
+                  </select>
+                  {errors.securityQuestion2 && (
+                    <p className="text-xs text-red-500 mb-2">{errors.securityQuestion2}</p>
+                  )}
+                  <input
+                    className={`w-full h-12 px-4 mb-1 border rounded-lg ${
+                      errors.securityAnswer2 && "border-red-500"
+                    }`}
+                    type="text"
+                    id="securityAnswer2"
+                    placeholder="Answer"
+                    name="securityAnswer2"
+                    value={formData.securityAnswer2}
+                    onChange={handleChange}
+                  />
+                  {errors.securityAnswer2 && (
+                    <p className="text-xs text-red-500 mb-2">{errors.securityAnswer2}</p>
+                  )}
+                  {errors.securityDuplicate && (
+                    <p className="text-xs text-red-500 mb-2">{errors.securityDuplicate}</p>
+                  )}
+                </div>
+                <div className="flex w-full gap-2 mt-6">
+                  <button
+                    type="submit"
+                    className="w-1/2 py-3 rounded-none bg-sage text-white hover:bg-gradient-to-r hover:from-sage hover:to-darksage"
+                  >
+                    Sign up
+                  </button>
+                  <button
+                    type="button"
+                    className="w-1/2 py-3 rounded-none bg-gray-400 text-white"
+                    onClick={() => setStep(1)}
+                  >
+                    Back
+                  </button>
+                </div>
               </form>
             )}
 

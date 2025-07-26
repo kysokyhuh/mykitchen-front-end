@@ -66,30 +66,72 @@ const changepassword = async (formData, userId) => {
   } catch (err) {
     throw new Error(err);
   }
-}
+};
 
 
-
-const getSecurityQuestions = async (username) => {
+const forgotPasswordRequest = async (email) => {
   try {
-    const res = await fetch(`${BACKEND_URL}/${username}/security-questions`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
 
+    const res = await fetch(`${BACKEND_URL}/users/forgot-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+    });
     const json = await res.json();
     if (json.error) {
       throw new Error(json.error);
     }
-
-    return json;  
-  } catch (err) {
-    console.error(err);
-    throw new Error('Failed to fetch security questions.');
+    return json; 
+  } catch (error) {
+    throw new Error(error);
   }
 };
+
+const forgotPasswordValidate = async (email, securityAnswer1, securityAnswer2) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/forgot-password/validate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, securityAnswer1, securityAnswer2 }),
+  });
+  const json = await res.json();
+  if (json.error) {
+    throw new Error(json.error);
+  }
+
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const forgotPasswordChange = async (email, newPassword, confirmPassword) => {
+  try {
+    const res = await fetch (`${BACKEND_URL}/users/forgot-password/change-pw`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, newPassword, confirmPassword }),
+    });
+    const json = await res.json();
+
+    if (json.error) {
+      throw new Error(json.error);  
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+}; 
+
 const signout = () => {
   localStorage.removeItem('token');
 };
 
-export { signup, signin, getUser, signout, changepassword, getSecurityQuestions };
+export { 
+  signup, 
+  signin, 
+  getUser, 
+  signout, 
+  changepassword,
+  forgotPasswordRequest,
+  forgotPasswordValidate, 
+  forgotPasswordChange
+};

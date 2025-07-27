@@ -36,8 +36,8 @@ const NavBar = ({ handleSignout }) => {
               <li className='hover:text-darksage'><Link to="/recipes/new">Add Recipe</Link></li>
               <li className='hover:text-darksage'><Link to={`/recipes/user/${user._id}`}>My Recipes</Link></li>
               <li className='hover:text-darksage'><Link to={`/recipes/user/${user._id}/favorites`}>Saved Recipes</Link></li>
-              {/* temporarily here */}
-              <li className='hover:text-darksage'><Link to={`/${user._id}/change-password`}>Change Password</Link></li> 
+              <li className='hover:text-darksage'><Link to={`/profile/${user._id}`}>Profile</Link></li> {/* Profile link added */}
+              <li className='hover:text-darksage'><Link to={`/${user._id}/change-password`}>Change Password</Link></li>
             </div>
           </ul>
           <div className='hidden md:flex ml-auto hover:text-darksage'>
@@ -53,7 +53,8 @@ const NavBar = ({ handleSignout }) => {
               <li className='p-4 hover:text-darksage'><Link to="/recipes/new">ADD RECIPE</Link></li>
               <li className='p-4 hover:text-darksage'><Link to={`/recipes/user/${user._id}`}>MY RECIPES</Link></li>
               <li className='p-4 hover:text-darksage'><Link to={`/recipes/user/${user._id}/favorites`}>SAVED RECIPES</Link></li>
-              <li className='p-4 hover:text-darksage'><Link to="" onClick={handleSignout}>Sign Out</Link></li>
+              <li className='p-4 hover:text-darksage'><Link to={`/profile/${user._id}`}>PROFILE</Link></li> {/* Profile link added */}
+              <li className='p-4 hover:text-darksage'><Link to="" onClick={handleSignout}>SIGN OUT</Link></li>
             </ul>
           </div>
         </div>

@@ -118,7 +118,7 @@ const App = () => {
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />
           <Route path="/signin" element={<SigninForm setUser={setUser} />} />
           {/* temporarily here */}
-          <Route path="/userprofile" element={<UserProfile/>} />
+          <Route path="/profile/:id" element={<UserProfile />} />
           <Route path="/adminprofile" element={<AdminProfile/>} />
           <Route path="/moderatorprofile" element={<ModeratorProfile/>} />
 

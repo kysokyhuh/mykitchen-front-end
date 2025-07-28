@@ -121,6 +121,86 @@ const forgotPasswordChange = async (email, newPassword, confirmPassword) => {
   }
 }; 
 
+ 
+const getUserProfile = async () => {
+  try {
+    const token =  localStorage.getItem('token');
+  if (!token) throw new Error('No token found');
+
+  const res = await fetch(`${BACKEND_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+  });
+
+  const json = await res.json();
+  if (!res.ok) {
+    throw new Error(json.error || 'Failed to fetch user info');
+  }
+  return json;
+  } catch (error) {
+    throw new Error(error); 
+  }
+}
+
+const updateProfile = async (profileData) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No token found');
+
+    const res = await fetch(`${BACKEND_URL}/users/edit-profile`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(profileData),
+    });
+
+    const json = await res.json();
+    if (!res.ok) {
+      throw new Error(json.error || 'Failed to update profile');
+    }
+    return json;
+  } catch (error) {
+    throw new Error(error.message || 'Failed to update profile');
+  }
+};
+
+const deleteAccount = async (password, securityAnswer1, securityAnswer2) => {
+  try {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${BACKEND_URL}/users/delete-account`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ password, securityAnswer1, securityAnswer2 }),
+  });
+   const json = await res.json();
+   return json;
+  } catch (error) {
+    throw new Error(error.message || 'Failed to update profile');
+  }
+}
+
+
+const getSecurityQuestionsByEmail = async (email) => {
+  // will reuse a route for this 
+  const res = await fetch(`${BACKEND_URL}/users/forgot-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error || 'Error fetching questions');
+  return json; // { securityQuestion1, securityQuestion2 }
+};
+
+
 const signout = () => {
   localStorage.removeItem('token');
 };
@@ -133,5 +213,9 @@ export {
   changepassword,
   forgotPasswordRequest,
   forgotPasswordValidate, 
-  forgotPasswordChange
+  forgotPasswordChange, 
+  getUserProfile,
+  updateProfile,
+  deleteAccount,
+  getSecurityQuestionsByEmail,
 };
